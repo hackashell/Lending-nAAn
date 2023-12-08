@@ -1,5 +1,5 @@
 const Logo = () => (
-    <p>Lending nAAn</p>
+    <img className="w-48" src="/logo.png" alt="Logo" />
 );
 
 export default Logo;
