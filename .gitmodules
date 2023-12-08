@@ -1,0 +1,6 @@
+[submodule "backend/lib/forge-std"]
+	path = backend/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "backend/lib/prb-test"]
+	path = backend/lib/prb-test
+	url = https://github.com/PaulRBerg/prb-test
