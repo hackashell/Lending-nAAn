@@ -9,8 +9,7 @@ interface IAaveAdapter {
     function supplyAndBorrow(
         IERC20Metadata _depositToken,
         IERC20Metadata _borrowToken,
-        uint256 _supplyAmount,
-        uint256 _borrowAmount,
+        uint256 _amount,
         address _user
     )
         external payable;

@@ -43,7 +43,7 @@ contract Oven is Multicall {
         supplyToken.transferFrom(from, address(this), supplyAmount);
         address adapter = adapters[Flavor.Aave];
         supplyToken.approve(adapter, supplyAmount);
-        IAaveAdapter(adapter).supplyAndBorrow(supplyToken, borrowToken, supplyAmount, borrowAmount, from);
+        IAaveAdapter(adapter).supplyAndBorrow(supplyToken, borrowToken, supplyAmount, from);
 
         emit AaveSupplyAndBorrow(address(supplyToken), address(borrowToken), supplyAmount, borrowAmount, from);
     }
