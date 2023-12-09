@@ -1,11 +1,39 @@
 import { AnimatedButton } from "@/components/AnimatedButton/AnimatedButton";
 import MyAccount from "@/components/MyAccount/MyAccount";
 import { useSDK } from "@metamask/sdk-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Spinner } from "../Spinner";
 
 const NavigationMenu = () => {
   const [account, setAccount] = useState<string>();
   const { sdk, connected, connecting, provider, chainId } = useSDK();
+  const [gasData, setGasData] = useState<string>();
+
+  const Auth = Buffer.from(
+    process.env.NEXT_PUBLIC_INFURA_API_KEY +
+      ":" +
+      process.env.NEXT_PUBLIC_INFURA_API_KEY_SECRET
+  ).toString("base64");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios.get(
+          `https://gas.api.infura.io/networks/1/suggestedGasFees`,
+          {
+            headers: {
+              Authorization: `Basic ${Auth}`,
+            },
+          }
+        );
+        console.log("Suggested gas fees:", data?.medium?.suggestedMaxFeePerGas);
+        setGasData(parseFloat(data?.medium?.suggestedMaxFeePerGas).toFixed(2));
+      } catch (error) {
+        console.log("Server responded with:", error);
+      }
+    })();
+  }, [Auth, chainId]);
 
   const connect = async () => {
     try {
@@ -18,17 +46,22 @@ const NavigationMenu = () => {
   };
   return (
     <div className="flex items-center gap-12">
-      <p className="text-sm">
-        <span className="mr-4">⛽</span>
-        43.7 Gwei
-      </p>
+      {!gasData ? (
+        <Spinner />
+      ) : (
+        <p className="text-sm">
+          <span className="mr-4">⛽</span>
+          {gasData} Gwei
+        </p>
+      )}
       {connected && account ? (
         <div className="flex items-center gap-6">
-          <AnimatedButton className="h-16" text={"Swap 🔁"} onClick={() => {}} />
-          <MyAccount
+          <AnimatedButton
             className="h-16"
-            address={account}
+            text={"Swap 🔁"}
+            onClick={() => {}}
           />
+          <MyAccount className="h-16" address={account} />
         </div>
       ) : (
         <AnimatedButton text="Connect" onClick={connect} />

@@ -14,6 +14,8 @@ export const Layout: React.FC<{
             name: "Lending nAAn",
             url: "https://lending.naan.finance",
           },
+          extensionOnly: false,
+          forceInjectProvider: false,
         }}
       >
         {children}
