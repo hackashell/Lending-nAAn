@@ -31,9 +31,7 @@ export const Relay = () => {
     isSponsored: true,
   };
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   const executeTxn = async () => {
     const ethAdapter = new EthersAdapter({
@@ -41,24 +39,29 @@ export const Relay = () => {
       signerOrProvider: signer,
     });
 
-      const protocolKit = await Safe.create({
-        ethAdapter,
-        safeAddress,
-      });
+    const protocolKit = await Safe.create({
+      ethAdapter,
+      safeAddress,
+    });
 
-      const relayKit = new GelatoRelayPack({
-        apiKey: process.env.GELATO_RELAY_API_KEY!,
-        protocolKit,
-      });
+    const relayKit = new GelatoRelayPack({
+      apiKey: process.env.GELATO_RELAY_API_KEY!,
+      protocolKit,
+    });
 
     const safeTransaction = await relayKit.createRelayedTransaction({
       transactions,
-      options
-    })
-    
-    const signedSafeTransaction = await protocolKit.signTransaction(safeTransaction)
-  }
+      options,
+    });
 
-  return (<div>
-  <Button text="Execute txn" onClick={executeTxn} /></div>);
+    const signedSafeTransaction = await protocolKit.signTransaction(
+      safeTransaction
+    );
+  };
+
+  return (
+    <div>
+      <Button text="Execute txn" onClick={executeTxn} />
+    </div>
+  );
 };
