@@ -1,3 +1,4 @@
+import { ConnectButton } from "../ConnectButton/ConnectButton";
 import { Input } from "../ui/input";
 import {
   Select,
@@ -6,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import ButtonAnimated from "@/components/ButtonAnimated/ButtonAnimated";
 
 export const BorrowSupply = () => {
   return (
@@ -47,9 +47,9 @@ export const BorrowSupply = () => {
           </SelectContent>
         </Select>
       </div>
-      <ButtonAnimated
+      <ConnectButton
         className="w-full text-lg"
-        text="Execute"
+        text="Execute" onClick={() => {}}
       />
     </div>
   );
