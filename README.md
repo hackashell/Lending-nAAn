@@ -30,6 +30,8 @@ Fix bugs. Simplify UX even more after gathering feedback. Make notification syst
 Go multichain and cross chain providing option of depositing on one chain and getting the loan on another.
 
 ---
+## Demo
+
 ## What tech did we use and what bounties we apply for?
 
 ### Safe
@@ -71,23 +73,104 @@ We have deployed our contract on Linea testnet at the address 0x262d7a5bee15e9e9
 ```
 
 ### Graph
-#### Bounties:
+```
+Bounties:
+
 - Best Use of Subgraph
-#### Tech used:
-Subgraphs:
+
+
+Tech used:
+
+Subgraphs
+
+```
 
 ### Airstack
-#### Bounties:
+```
+Bounties:
+
 - Best overall use of Airstack APIs
-#### Tech used:
-Airstack SDK:
+
+Tech used:
+
+Airstack SDK
+Airstack SDK is used with useGetWalletENS to fetch ens domains once the user is singed in and display it in the navigation instead of the address.
+```
 
 ### Mantle
+```
+Bounties:
+
+- Best DeFi Project
+- Best UX
+
+Tech used:
+We have deployed our contract on Mantle Tesnet at the address 0x5A5B14594f1BF93656a2B705ECdb873373A4eFe9
+Link on explorer: https://explorer.testnet.mantle.xyz/tx/0x9c01abf33d7edcfa248ae94e06b3c3e18f048c160c05b0d4265e77d387c27ec9
+```
 
 ### Celo
+```
+Bounties:
+
+- Best dApps on Celo Blockchain
+
+Tech used:
+We have deployed our contract on Celo Alfajores at the address 0x7c337d52a2425f277b371fe79ca2ced02744836a
+```
 
 ### Polygon
+```
+Bounties:
+
+- Polygon zkEVM DeFi Challenge
+
+Tech used:
+We have deployed our contracts on Polygon Mumbai at the addresses:
+0x5A5B14594f1BF93656a2B705ECdb873373A4eFe9 oven
+0x7C337d52a2425f277b371Fe79CA2CEd02744836A adapter
+
+We couldn't use Polygon zkEVM because Aave is not supported.
+```
+
+### Scroll
+```
+Bounties:
+
+- Deploy on Scroll
+- Best on Scroll 
+
+Tech used:
+We have deployed our contracts on Scroll Sepholia at the addresses:
+0xcf17664006851A27d5Bd93d497f30853AC558792 oven
+0x262D7a5BEE15E9E9fEa0C0439dA4DAC9056e178E adapter
+
+Links on explorer:
+https://sepolia.scrollscan.com/tx/0x10a6b841ecf63d67365ce3dad4ec3252246c80f07282d06a56effa4006da1fc9
+https://sepolia.scrollscan.com/tx/0x2c94148244b6297dfed90c1e4f75e9ce333849851a052ffded98a4b71d3efb59
+```
 
 ### Arbitrum
+```
+Bounties:
+
+- Most Original
+- Best Technology
+- Pool Prize
+
+Tech used:
+
+We have deployed our contracts on Arbitrum Goerli at the addresses:
+0xad2e65a73b714d5c5f5a49a388023cd36e0443db oven
+0x694a170115a014807a93bdfa4c41547fbad906e3 adapter
+```
 
 ### Base
+```
+Bounties:
+
+- Build a Consumer Product
+
+Tech used:
+We have deployed our contract on Base Goerli at the addresses 0xcf17664006851A27d5Bd93d497f30853AC558792
+```
