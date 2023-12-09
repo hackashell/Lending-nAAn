@@ -26,9 +26,26 @@ contract Oven is Multicall {
         IAaveAdapter(adapters[Flavor.Aave]).redeem(IERC20(token), amount, msg.sender);
     }
 
-    function aaveBorrow(address token, uint256 amount) external { }
+    function aaveSupplyAndBorrow(
+        address supplyToken,
+        address borrowToken,
+        uint256 supplyAmount,
+        uint256 borrowAmount
+    )
+        external
+    {
+        IAaveAdapter(adapters[Flavor.Aave]).supplyAndBorrow(
+            IERC20(supplyToken), IERC20(borrowToken), supplyAmount, borrowAmount, msg.sender
+        );
+    }
 
-    function aaveRepay(address token, uint256 amount) external { }
+    function aaveBorrow(address token, uint256 amount) external {
+        IAaveAdapter(adapters[Flavor.Aave]).borrow(IERC20(token), amount, msg.sender);
+    }
+
+    function aaveRepay(address token, uint256 amount) external {
+        IAaveAdapter(adapters[Flavor.Aave]).repay(IERC20(token), amount, msg.sender);
+    }
 
     function oneInchSwap(address tokenIn, address tokenOut, uint256 amountIn, uint256 minAmountOut) external { }
 }
