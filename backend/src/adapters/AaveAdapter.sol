@@ -45,7 +45,7 @@ contract AaveAdapter is IAaveAdapter {
         aggregator = _aggregator;
     }
 
-    function invest(IERC20 _depositToken, IERC20Metadata _borrowToken, uint256 _amount, address _user) external payable {
+    function supplyAndBorrow(IERC20Metadata _depositToken, IERC20Metadata _borrowToken, uint256 _amount, address _user) external payable {
         if (address(_depositToken) == address(0) || address(_depositToken) == address(weth)) {
             if (address(_depositToken) == address(weth)) {
                 // unwraps WrappedToken back into Native Token
@@ -73,7 +73,7 @@ contract AaveAdapter is IAaveAdapter {
         lendingPool.borrow(address(_borrowToken), borrowAmount, 1, 0, _user);
     }
 
-    function redeem(IERC20 _token, uint256 _amount, address _user) external {
+    function redeem(IERC20Metadata _token, uint256 _amount, address _user) external {
         // Withdraws funds (principal + interest + rewards) from external pool
         if (address(_token) == address(0) || address(_token) == address(weth)) {
             address aTokenAddress;
