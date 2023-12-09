@@ -7,13 +7,16 @@ import {
 } from "@safe-global/safe-core-sdk-types";
 import { useEffect } from "react";
 import Button from "../Button/Button";
+import { useSDK } from "@metamask/sdk-react";
+import { Address } from "viem";
 
 export const Relay = () => {
+  const { account } = useSDK();
   // https://chainlist.org
   const RPC_URL = "https://endpoints.omniatech.io/v1/bsc/mainnet/public";
   const provider = new ethers.JsonRpcProvider(RPC_URL);
   const signer = new ethers.Wallet(process.env.OWNER_1_PRIVATE_KEY!, provider);
-  const safeAddress = "0x..."; // Safe from which the transaction will be sent
+  const safeAddress = account as Address; // Safe from which the transaction will be sent
 
   // Any address can be used for destination. In this example, we use vitalik.eth
   const destinationAddress = "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045";
@@ -23,7 +26,7 @@ export const Relay = () => {
   const transactions: MetaTransactionData[] = [
     {
       to: destinationAddress,
-      data: "0x",
+      data: " 0xad2e65a73b714d5c5f5a49a388023cd36e0443d",
       value: withdrawAmount,
     },
   ];
