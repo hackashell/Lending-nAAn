@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import SwapModal from "@/components/SwapModal/SwapModal";
 
 const NavigationMenu = () => {
   const [account, setAccount] = useState<string>();
@@ -82,11 +83,7 @@ const NavigationMenu = () => {
       </div>
       {connected && account ? (
         <div className="flex items-center gap-6">
-          <AnimatedButton
-            className="h-16"
-            text={"Swap 🔁"}
-            onClick={() => {}}
-          />
+          <SwapModal />
           <MyAccount className="h-16" address={account} />
         </div>
       ) : (
