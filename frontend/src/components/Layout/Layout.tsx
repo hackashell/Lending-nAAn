@@ -1,5 +1,5 @@
 import { MetaMaskProvider } from "@metamask/sdk-react";
-import { ThemeProvider } from "../themeprovider";
+import { ThemeProvider } from "../ThemeProvider";
 
 export const Layout: React.FC<{
   children: React.ReactNode;
