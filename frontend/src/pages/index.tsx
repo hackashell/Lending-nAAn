@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation/Navigation";
 import { BorrowSupply } from '@/components/BorrowSupply/BorrowSupply';
 import UserBorrowsAndSupplies from "@/components/UserBorrowsAndSupplies/UserBorrowsAndSupplies";
 import {useSDK} from "@metamask/sdk-react";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,13 +13,19 @@ export default function Home() {
   const loggedIn = account && connected;
 
   return (
-    <main>
-      <Navigation />
-      <BorrowSupply />
-      {
-        loggedIn &&
-        <UserBorrowsAndSupplies />
-      }
-    </main>
+    <>
+      <Head>
+        <title>Lending nAAn</title>
+        <meta name="description" content="Lending nAAn - Lending and borrowing omnidapp powered by the account abstraction" />
+      </Head>
+      <main>
+        <Navigation />
+        <BorrowSupply />
+        {
+          loggedIn &&
+          <UserBorrowsAndSupplies />
+        }
+      </main>
+    </>
   )
 }

@@ -23,7 +23,7 @@ export const BorrowSupply = () => {
         />
         <div
           className="text-[#595959] text-4xl h-16 flex items-center px-2"
-          placeholder="48"
+          placeholder="0"
         >
           0
         </div>
