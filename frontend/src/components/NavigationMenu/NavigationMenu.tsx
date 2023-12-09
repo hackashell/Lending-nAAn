@@ -1,37 +1,40 @@
-import ButtonAnimated from "@/components/ButtonAnimated/ButtonAnimated";
+import { ConnectButton } from "@/components/ConnectButton/ConnectButton";
 import MyAccount from "@/components/MyAccount/MyAccount";
+import { useSDK } from "@metamask/sdk-react";
+import { useState } from "react";
 
 const NavigationMenu = () => {
-    const isConnected = true;
-    return (
-        <div className="flex items-center gap-12">
-            <p className="text-sm">
-                <span className="mr-4">⛽</span>
-                43.7 Gwei
-            </p>
-            {
-                isConnected ?
-                    (
-                        <div className="flex items-center gap-6">
-                            <ButtonAnimated
-                                className="h-16"
-                                text={"Swap 🔁"}
-                                primary
-                            />
-                            <MyAccount
-                                className="h-16"
-                                address={"0xE0fF737685fdE7Fd0933Fc280D53978b3d0700D5"}
-                            />
-                        </div>
-                    ) :
-                    <ButtonAnimated
-                        text="Connect"
-                        primary
-                    />
-            }
+  const [account, setAccount] = useState<string>();
+  const { sdk, connected, connecting, provider, chainId } = useSDK();
 
+  const connect = async () => {
+    try {
+      const accounts = await sdk?.connect();
+      // @ts-expect-error
+      setAccount(accounts?.[0]);
+    } catch (err) {
+      console.warn(`failed to connect..`, err);
+    }
+  };
+  return (
+    <div className="flex items-center gap-12">
+      <p className="text-sm">
+        <span className="mr-4">⛽</span>
+        43.7 Gwei
+      </p>
+      {connected && account ? (
+        <div className="flex items-center gap-6">
+          <ConnectButton className="h-16" text={"Swap 🔁"} onClick={() => {}} />
+          <MyAccount
+            className="h-16"
+            address={account}
+          />
         </div>
-    )
+      ) : (
+        <ConnectButton text="Connect" onClick={connect} />
+      )}
+    </div>
+  );
 };
 
 export default NavigationMenu;
