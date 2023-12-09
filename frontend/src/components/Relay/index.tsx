@@ -57,6 +57,14 @@ export const Relay = () => {
     const signedSafeTransaction = await protocolKit.signTransaction(
       safeTransaction
     );
+
+    const response = await relayKit.executeRelayTransaction(
+      signedSafeTransaction
+    );
+
+    console.log(
+      `Relay Transaction Task ID: https://relay.gelato.digital/tasks/status/${response.taskId}`
+    );
   };
 
   return (
