@@ -15,8 +15,6 @@ const MyAccount: React.FC<Props> = ({ className, address }) => {
   });
   const addressToShow =  data?.Wallet?.primaryDomain?.name || addressShorten;
 
-  console.log("MOJ DATA", data);
-
   return (
     <div
       className={`${className} w-[220px] flex items-center gap-3 px-10 py-4 bg-[#222222] rounded-lg justify-center cursor-pointer`}

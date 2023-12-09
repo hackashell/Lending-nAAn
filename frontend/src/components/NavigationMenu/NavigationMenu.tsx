@@ -25,10 +25,10 @@ import {
   SafeAuthUserInfo,
 } from "@safe-global/auth-kit";
 import { Button } from "../ui/button";
+import SwapModal from "@/components/SwapModal/SwapModal";
 
 const NavigationMenu = () => {
-  const [account, setAccount] = useState<string>();
-  const { sdk, connected, connecting, provider, chainId } = useSDK();
+  const { account, sdk, connected, connecting, provider, chainId } = useSDK();
   const [gasData, setGasData] = useState<string>();
   const [safeAuthPack, setSafeAuthPack] = useState<SafeAuthPack>();
   const [safeAuthSignInResponse, setSafeAuthSignInResponse] =
@@ -71,8 +71,6 @@ const NavigationMenu = () => {
   const connect = async () => {
     try {
       const accounts = await sdk?.connect();
-      // @ts-expect-error
-      setAccount(accounts?.[0]);
     } catch (err) {
       console.warn(`failed to connect..`, err);
     }
@@ -202,18 +200,14 @@ const NavigationMenu = () => {
       </div>
       {connected && account ? (
         <div className="flex items-center gap-6">
-          <AnimatedButton
-            className="h-16"
-            text={"Swap 🔁"}
-            onClick={() => {}}
-          />
+          <SwapModal />
           <MyAccount className="h-16" address={account} />
         </div>
       ) : (
         <Dialog open={modal} onOpenChange={setModal}>
           <DialogTrigger>
             <AnimatedButton
-              text="Connect Wallet"
+              text="Sign in"
               onClick={() => {
                 setModal(true);
               }}
