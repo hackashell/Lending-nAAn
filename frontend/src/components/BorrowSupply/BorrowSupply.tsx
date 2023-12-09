@@ -7,13 +7,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import {DAI_LOGO, ETH_LOGO, USDC_LOGO} from "@/lib/constants";
-import {useSDK} from "@metamask/sdk-react";
+import { DAI_LOGO, ETH_LOGO, USDC_LOGO } from "@/lib/constants";
+import { useSDK } from "@metamask/sdk-react";
 import { bundlerClient, paymasterClient, publicClient } from "@/pimlicoConfig";
-import { createSmartAccountClient , } from "permissionless";
-import OvenABI from "../../../../backend/out/Oven.sol/Oven.json"
+import { createSmartAccountClient } from "permissionless";
+import OvenABI from "../../../../backend/out/Oven.sol/Oven.json";
 import { Address, concat, encodeFunctionData, http, parseEther } from "viem";
-import {  arbitrumGoerli,  } from "viem/chains";
+import { arbitrumGoerli } from "viem/chains";
 import { Alert } from "../Alert";
 
 const TokenOptions = () => (
@@ -26,7 +26,11 @@ const TokenOptions = () => (
     </SelectItem>
     <SelectItem value="usdc">
       <div className="flex items-center gap-[10px] py-[5px]">
-        <img className="w-[30px] rounded-full" src={USDC_LOGO} alt="USDC logo" />
+        <img
+          className="w-[30px] rounded-full"
+          src={USDC_LOGO}
+          alt="USDC logo"
+        />
         <p>USDC</p>
       </div>
     </SelectItem>
@@ -37,42 +41,48 @@ const TokenOptions = () => (
       </div>
     </SelectItem>
   </>
-)
+);
 
 export const BorrowSupply = () => {
   const { account, connected, sdk } = useSDK();
 
   // GENERATE THE INITCODE
-const SIMPLE_ACCOUNT_FACTORY_ADDRESS = "0xad2e65a73b714d5c5f5a49a388023cd36e0443db"
- 
-  const executeTxn = async () => {
+  const SIMPLE_ACCOUNT_FACTORY_ADDRESS =
+    "0xad2e65a73b714d5c5f5a49a388023cd36e0443db";
 
-const initCode = concat([
-  SIMPLE_ACCOUNT_FACTORY_ADDRESS,
-  encodeFunctionData({
-    abi: [{
-      inputs: [{ name: "owner", type: "address" }, { name: "salt", type: "uint256" }],
-      name: "createAccount",
-      outputs: [{ name: "ret", type: "address" }],
-      stateMutability: "nonpayable",
-      type: "function",
-    }],
-    args: [account as Address, BigInt('0n')],
-  })
-]);
- 
-console.log("Generated initCode:", initCode)
+  const executeTxn = async () => {
+    const initCode = concat([
+      SIMPLE_ACCOUNT_FACTORY_ADDRESS,
+      encodeFunctionData({
+        abi: [
+          {
+            inputs: [
+              { name: "owner", type: "address" },
+              { name: "salt", type: "uint256" },
+            ],
+            name: "createAccount",
+            outputs: [{ name: "ret", type: "address" }],
+            stateMutability: "nonpayable",
+            type: "function",
+          },
+        ],
+        args: [account as Address, BigInt("0n")],
+      }),
+    ]);
+
+    console.log("Generated initCode:", initCode);
 
     const smartAccountClient = createSmartAccountClient({
       account: account as Address,
       chain: arbitrumGoerli,
       transport: http(
-        "https://api.pimlico.io/v1/CHAIN/rpc?apikey=" + process.env.NEXT_PUBLIC_PIMLICO_API_KEY,
+        "https://api.pimlico.io/v1/CHAIN/rpc?apikey=" +
+          process.env.NEXT_PUBLIC_PIMLICO_API_KEY
       ),
 
       sponsorUserOperation: paymasterClient.sponsorUserOperation, // optional
     });
-    
+
     const gasPrices = await bundlerClient.getUserOperationGasPrice();
 
     const txHash = await smartAccountClient.sendTransaction({
@@ -81,11 +91,10 @@ console.log("Generated initCode:", initCode)
       value: parseEther("0.1"),
       maxFeePerGas: gasPrices.fast.maxFeePerGas, // if using Pimlico
       maxPriorityFeePerGas: gasPrices.fast.maxPriorityFeePerGas, // if using Pimlico
-  
     });
 
     console.log(txHash);
-    <Alert message="Txn sent!" />
+    <Alert message="Txn sent!" />;
   };
 
   return (
@@ -100,9 +109,7 @@ console.log("Generated initCode:", initCode)
           type="number"
           placeholder="0"
         />
-        <div
-          className="text-[#595959] text-4xl h-16 flex items-center px-2"
-        >
+        <div className="text-[#595959] text-4xl h-16 flex items-center px-2">
           0
         </div>
         <Select>
@@ -122,19 +129,20 @@ console.log("Generated initCode:", initCode)
           </SelectContent>
         </Select>
       </div>
-      {
-        account && connected ?
-          <AnimatedButton
-            className="w-full text-lg"
-            text="Execute" onClick={() => {}}
-          /> :
-          <AnimatedButton
-            className="w-full text-lg"
-            // TODO: open modal instead of MetaMask
-            text="Connect" onClick={() => sdk?.connect()}
-          />
-      }
-
+      {account && connected ? (
+        <AnimatedButton
+          className="w-full text-lg"
+          text="Execute"
+          onClick={() => {}}
+        />
+      ) : (
+        <AnimatedButton
+          className="w-full text-lg"
+          // TODO: open modal instead of MetaMask
+          text="Connect"
+          onClick={() => sdk?.connect()}
+        />
+      )}
     </div>
   );
 };
