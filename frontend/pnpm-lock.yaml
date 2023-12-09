@@ -1,21 +1,45 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@gelatonetwork/relay-sdk':
+    specifier: ^5.5.5
+    version: 5.5.5
   '@metamask/sdk':
     specifier: ^0.14.1
     version: 0.14.1(@types/react@18.0.0)(react-dom@18.0.0)(react-native@0.73.0)(react@18.0.0)
   '@metamask/sdk-react':
     specifier: ^0.14.1
     version: 0.14.1(@types/react@18.0.0)(react-dom@18.0.0)(react-native@0.73.0)(react@18.0.0)
+  '@monerium/sdk':
+    specifier: ^2.8.0
+    version: 2.8.0
+  '@radix-ui/react-dialog':
+    specifier: ^1.0.5
+    version: 1.0.5(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
   '@radix-ui/react-select':
     specifier: ^2.0.0
     version: 2.0.0(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
   '@radix-ui/react-slot':
     specifier: ^1.0.2
     version: 1.0.2(@types/react@18.0.0)(react@18.0.0)
+  '@safe-global/account-abstraction-kit-poc':
+    specifier: ^2.0.0
+    version: 2.0.0
   '@safe-global/auth-kit':
     specifier: ^2.0.0
     version: 2.0.0(@babel/runtime@7.23.5)
+  '@safe-global/onramp-kit':
+    specifier: ^2.0.0
+    version: 2.0.0
+  '@safe-global/protocol-kit':
+    specifier: ^2.0.0
+    version: 2.0.0
+  '@safe-global/relay-kit':
+    specifier: ^2.0.0
+    version: 2.0.0
+  '@safe-global/safe-core-sdk-types':
+    specifier: ^3.0.1
+    version: 3.0.1
   '@web3auth/safeauth-embed':
     specifier: ^0.0.0
     version: 0.0.0(@babel/runtime@7.23.5)
@@ -55,6 +79,9 @@ dependencies:
   sass:
     specifier: ^1.69.5
     version: 1.69.5
+  sdk:
+    specifier: link:@types/monerium/sdk
+    version: link:@types/monerium/sdk
   tailwind-merge:
     specifier: ^2.1.0
     version: 2.1.0
@@ -100,6 +127,10 @@ packages:
 
   /@adraffy/ens-normalize@1.10.0:
     resolution: {integrity: sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q==}
+    dev: false
+
+  /@adraffy/ens-normalize@1.9.2:
+    resolution: {integrity: sha512-0h+FrQDqe2Wn+IIGFkTCd4aAwTJ+7834Ek1COohCyV26AXhwQ7WQaz+4F/nLOeVl/3BtWHOHLPsq46V8YB46Eg==}
     dev: false
 
   /@ampproject/remapping@2.2.1:
@@ -1960,6 +1991,20 @@ packages:
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
     dev: false
 
+  /@gelatonetwork/relay-sdk@5.5.5:
+    resolution: {integrity: sha512-aLiN8CmWBTei5JMoSg3LHX3MmB+IoaM+Rw1kkm9x/ECrS6FhWZH1WU76+xvmeIVnbncEUc3xNOQfz7UAwUZI0w==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
+      axios: 0.27.2
+      ethers: 6.7.0
+      isomorphic-ws: 5.0.0(ws@8.11.0)
+      ws: 8.11.0(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - utf-8-validate
+    dev: false
+
   /@hapi/hoek@9.3.0:
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
     dev: false
@@ -2301,6 +2346,18 @@ packages:
       - supports-color
     dev: false
 
+  /@monerium/sdk@2.6.5:
+    resolution: {integrity: sha512-fEAJk2gNuirzub2IacICQ2khONeHpUD1LbEtq1RXBDPRusCmftDYufQRnv6oQBSw+prTHGnvzo2gU/0q4HszEw==}
+    engines: {node: '>= 16.15'}
+    dev: false
+
+  /@monerium/sdk@2.8.0:
+    resolution: {integrity: sha512-OV9lE1ObIaRwZ2UVcX/5JrdvvnEKqca0tJmHIYvPI9vo7GOf7QmzC/EHaqandhfpvkEraYxgoAUk7ywVFqQZvg==}
+    engines: {node: '>= 16.15'}
+    dependencies:
+      crypto-js: 4.2.0
+    dev: false
+
   /@next/env@14.0.4:
     resolution: {integrity: sha512-irQnbMLbUNQpP1wcE5NstJtbuA/69kRfzBrpAD7Gsn8zm/CY6YQYc3HQBz8QPxwISG26tIm5afvvVbu508oBeQ==}
     dev: false
@@ -2404,6 +2461,10 @@ packages:
       '@noble/hashes': 1.3.2
     dev: false
 
+  /@noble/hashes@1.1.2:
+    resolution: {integrity: sha512-KYRCASVTv6aeUi1tsF8/vpyR7zpfs3FUzy2Jqm+MU+LmUKhQ0y2FpfwqkCcxSg2ua4GALJd8k2R76WxwZGbQpA==}
+    dev: false
+
   /@noble/hashes@1.3.1:
     resolution: {integrity: sha512-EbqwksQwz9xDRGfDST86whPBgM65E0OH/pCgqW0GBVzO22bNE+NuIbeTb714+IfSjU3aRk47EUvXIb5bTsenKA==}
     engines: {node: '>= 16'}
@@ -2412,6 +2473,10 @@ packages:
   /@noble/hashes@1.3.2:
     resolution: {integrity: sha512-MVC8EAQp7MvEcm30KWENFjgR+Mkmf+D189XJTkFIlwohU5hcBbn1ZkKq7KVTi2Hme3PMGF390DaL52beVrIihQ==}
     engines: {node: '>= 16'}
+    dev: false
+
+  /@noble/secp256k1@1.7.1:
+    resolution: {integrity: sha512-hOUk6AyBFmqVrv7k5WAw/LpszxVbj9gGN4JRkIX52fdFAj1UA61KXmZDvqVEm+pOyec3+fIeZB02LYa/pWOArw==}
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:
@@ -2515,6 +2580,40 @@ packages:
       '@babel/runtime': 7.23.5
       '@types/react': 18.0.0
       react: 18.0.0
+    dev: false
+
+  /@radix-ui/react-dialog@1.0.5(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0):
+    resolution: {integrity: sha512-GjWJX/AUpB703eEBanuBnIWdIXg6NvJFCXcNlSZk4xdszCdhrJgBoUd1cGk67vFO+WdA2pfI/plOpqz/5GUP6Q==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.5
+      '@radix-ui/primitive': 1.0.1
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.0.0)(react@18.0.0)
+      '@radix-ui/react-context': 1.0.1(@types/react@18.0.0)(react@18.0.0)
+      '@radix-ui/react-dismissable-layer': 1.0.5(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
+      '@radix-ui/react-focus-guards': 1.0.1(@types/react@18.0.0)(react@18.0.0)
+      '@radix-ui/react-focus-scope': 1.0.4(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
+      '@radix-ui/react-id': 1.0.1(@types/react@18.0.0)(react@18.0.0)
+      '@radix-ui/react-portal': 1.0.4(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
+      '@radix-ui/react-presence': 1.0.1(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
+      '@radix-ui/react-slot': 1.0.2(@types/react@18.0.0)(react@18.0.0)
+      '@radix-ui/react-use-controllable-state': 1.0.1(@types/react@18.0.0)(react@18.0.0)
+      '@types/react': 18.0.0
+      '@types/react-dom': 18.0.0
+      aria-hidden: 1.2.3
+      react: 18.0.0
+      react-dom: 18.0.0(react@18.0.0)
+      react-remove-scroll: 2.5.5(@types/react@18.0.0)(react@18.0.0)
     dev: false
 
   /@radix-ui/react-direction@1.0.1(@types/react@18.0.0)(react@18.0.0):
@@ -2653,6 +2752,28 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.5
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
+      '@types/react': 18.0.0
+      '@types/react-dom': 18.0.0
+      react: 18.0.0
+      react-dom: 18.0.0(react@18.0.0)
+    dev: false
+
+  /@radix-ui/react-presence@1.0.1(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0):
+    resolution: {integrity: sha512-UXLW4UAbIY5ZjcvzjfRFo5gxva8QirC9hF7wRE4U5gz+TP0DbRk+//qyuAQ1McDxBt1xNMBTaciFGvEmJvAZCg==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.5
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.0.0)(react@18.0.0)
+      '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.0.0)(react@18.0.0)
       '@types/react': 18.0.0
       '@types/react-dom': 18.0.0
       react: 18.0.0
@@ -3222,6 +3343,20 @@ packages:
     resolution: {integrity: sha512-2/U3GXA6YiPYQDLGwtGlnNgKYBSwCFIHf8Y9LUY5VATHdtbLlU0Y1R3QoBnT0aB4qv/BEiVVsj7LJXoQCgJ2vA==}
     dev: true
 
+  /@safe-global/account-abstraction-kit-poc@2.0.0:
+    resolution: {integrity: sha512-2M853r2TJqUhkzU1cLY2EjmeBbFG/bTV7odewWxlsmrzC3pvHyt9qxa7tv14FIYP5UvnuzupmWzn4FzetGco0g==}
+    dependencies:
+      '@safe-global/protocol-kit': 2.0.0
+      '@safe-global/relay-kit': 2.0.0
+      '@safe-global/safe-core-sdk-types': 3.0.1
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - encoding
+      - supports-color
+      - utf-8-validate
+    dev: false
+
   /@safe-global/api-kit@2.0.0:
     resolution: {integrity: sha512-Tz6pLEmhhv/ROsYSjVzoR8qw4YK72yNPJCFcK97kSvNJQpM2+HpRVYNjB53rY0IkvP0kVFvF6Ogp/BJri8g1Pw==}
     dependencies:
@@ -3254,6 +3389,23 @@ packages:
       - utf-8-validate
     dev: false
 
+  /@safe-global/onramp-kit@2.0.0:
+    resolution: {integrity: sha512-B82BM/1IEptt5OHjS+bEYiAVD0hKpu82cBpVow675xSjmhNMkRxu9LdXIWgY6PYTgSIx2RZfujLOw3aOOmUMkg==}
+    dependencies:
+      '@monerium/sdk': 2.6.5
+      '@safe-global/api-kit': 2.0.0
+      '@safe-global/protocol-kit': 2.0.0
+      '@safe-global/safe-core-sdk-types': 3.0.1
+      '@stripe/crypto': 0.0.4(@stripe/stripe-js@1.54.2)
+      '@stripe/stripe-js': 1.54.2
+      ethers: 6.9.0
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    dev: false
+
   /@safe-global/protocol-kit@2.0.0:
     resolution: {integrity: sha512-alnSxNZKC1ssKrFG5ytluu9kNKGwBifb1xhOyCqwMnm72JksbCEo0UWlNvaeCiYMwhYvMyS++mfxcLAsV/8Gfw==}
     dependencies:
@@ -3267,6 +3419,20 @@ packages:
       web3-utils: 1.10.3
     transitivePeerDependencies:
       - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@safe-global/relay-kit@2.0.0:
+    resolution: {integrity: sha512-vWQ4ydTFvvGQMcOeoPFUn0FmYWAT5AbQWn0FONFq4iS2Df3qvD4WijBfSfe/g3uzTWPXzk4/+GiDcjqaF4AcQA==}
+    dependencies:
+      '@gelatonetwork/relay-sdk': 5.5.5
+      '@safe-global/protocol-kit': 2.0.0
+      '@safe-global/safe-core-sdk-types': 3.0.1
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
       - encoding
       - supports-color
       - utf-8-validate
@@ -3348,6 +3514,18 @@ packages:
 
   /@socket.io/component-emitter@3.1.0:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
+    dev: false
+
+  /@stripe/crypto@0.0.4(@stripe/stripe-js@1.54.2):
+    resolution: {integrity: sha512-gcD/aG0N90ZrNVppWYf9ADPECptw6PVtF67VIeaFP7fhgd2NvNx8erkzlcvk3VIVSY+bZ6YGX7c7cASoySX74Q==}
+    peerDependencies:
+      '@stripe/stripe-js': ^1.46.0
+    dependencies:
+      '@stripe/stripe-js': 1.54.2
+    dev: false
+
+  /@stripe/stripe-js@1.54.2:
+    resolution: {integrity: sha512-R1PwtDvUfs99cAjfuQ/WpwJ3c92+DAMy9xGApjqlWQMj0FKQabUAys2swfTRNzuYAYJh7NqK2dzcYVNkKLEKUg==}
     dev: false
 
   /@swc/helpers@0.5.2:
@@ -4070,6 +4248,15 @@ packages:
     resolution: {integrity: sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==}
     engines: {node: '>=4'}
     dev: true
+
+  /axios@0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+    dependencies:
+      follow-redirects: 1.15.3
+      form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /axios@1.6.2:
     resolution: {integrity: sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==}
@@ -4860,6 +5047,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    dev: false
 
   /cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -5707,6 +5898,22 @@ packages:
       create-hash: 1.2.0
       ethereum-cryptography: 0.1.3
       rlp: 2.2.7
+    dev: false
+
+  /ethers@6.7.0:
+    resolution: {integrity: sha512-pxt5hK82RNwcTX2gOZP81t6qVPVspnkpeivwEgQuK9XUvbNtghBnT8GNIb/gPh+WnVSfi8cXC9XlfT8sqc6D6w==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
+      '@adraffy/ens-normalize': 1.9.2
+      '@noble/hashes': 1.1.2
+      '@noble/secp256k1': 1.7.1
+      '@types/node': 18.15.13
+      aes-js: 4.0.0-beta.5
+      tslib: 2.4.0
+      ws: 8.5.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
     dev: false
 
   /ethers@6.9.0:
@@ -6798,6 +7005,14 @@ packages:
   /isobject@3.0.1:
     resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /isomorphic-ws@5.0.0(ws@8.11.0):
+    resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
+    peerDependencies:
+      ws: '*'
+    dependencies:
+      ws: 8.11.0(bufferutil@4.0.8)(utf-8-validate@6.0.3)
     dev: false
 
   /isstream@0.1.2:
