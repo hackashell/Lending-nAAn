@@ -19,7 +19,7 @@ export const BorrowSupply = () => {
         <Input
           className="bg-inputBg rounded-sm text-white text-4xl h-16 p-2 border-0 focus:border-0 active:border-0 focus:ring-0 focus:outline-0 placeholder:text-[#595959]"
           type="number"
-          placeholder="48"
+          placeholder="0"
         />
         <div
           className="text-[#595959] text-4xl h-16 flex items-center px-2"
