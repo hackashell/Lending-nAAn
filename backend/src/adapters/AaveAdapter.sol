@@ -8,6 +8,9 @@ import "../interfaces/IAToken.sol";
 import "../interfaces/IDataProvider.sol";
 import "../interfaces/IAaveAdapter.sol";
 import "../interfaces/IWETH.sol";
+import "../interfaces/IWETH.sol";
+import "../interfaces/IAggregator.sol";
+import { mulDiv } from "@prb/math/src/Common.sol";
 
 contract AaveAdapter is IAaveAdapter {
     /// @notice Address of the weth gateway contract
@@ -22,6 +25,8 @@ contract AaveAdapter is IAaveAdapter {
     /// @notice AaveProtocolDataProvider address
     IDataProvider public immutable dataProvider;
 
+    IAggregator public immutable aggregator;
+
     address public immutable parentForwarder;
 
     constructor(
@@ -29,27 +34,43 @@ contract AaveAdapter is IAaveAdapter {
         IPoolAddressProvider _poolAddressesProvider,
         IWETHGateway _wethGateway,
         IDataProvider _dataProvider,
-        IWETH _weth
+        IWETH _weth,
+        IAggregator _aggregator
     ) {
         parentForwarder = _parentForwarder;
         lendingPool = ILendingPoolV3(_poolAddressesProvider.getPool());
         wethGateway = _wethGateway;
         dataProvider = _dataProvider;
         weth = _weth;
+        aggregator = _aggregator;
     }
 
-    function invest(IERC20 _token, uint256 _amount, address _user) external payable {
-        if (address(_token) == address(0) || address(_token) == address(weth)) {
-            if (address(_token) == address(weth)) {
+    function invest(IERC20 _depositToken, IERC20Metadata _borrowToken, uint256 _amount, address _user) external payable {
+        if (address(_depositToken) == address(0) || address(_depositToken) == address(weth)) {
+            if (address(_depositToken) == address(weth)) {
                 // unwraps WrappedToken back into Native Token
                 weth.withdraw(_amount);
             }
             // Deposits MATIC into the pool
             wethGateway.depositETH{ value: _amount }(address(lendingPool), address(this), 0);
         } else {
-            _token.approve(address(lendingPool), _amount);
-            lendingPool.supply(address(_token), _amount, _user, 0);
+            _depositToken.approve(address(lendingPool), _amount);
+            lendingPool.supply(address(_depositToken), _amount, _user, 0);
         }
+
+        (,, uint256 availableBorrowsBase,,,) = lendingPool.getUserAccountData(_user);
+
+        uint256 borrowAmount;
+
+        if (address(aggregator) != address(0)) {
+            uint256 safeBorrowAmount = mulDiv(availableBorrowsBase, 9500, 10_000);
+            uint256 borrowAmount = mulDiv(safeBorrowAmount, 1, uint256(aggregator.latestAnswer()));
+            borrowAmount = borrowAmount / _borrowToken.decimals();
+        } else {
+            borrowAmount = mulDiv(_amount, 5000, 10_000);
+        }
+        borrowAmount = borrowAmount / _borrowToken.decimals();
+        lendingPool.borrow(address(_borrowToken), borrowAmount, 1, 0, _user);
     }
 
     function redeem(IERC20 _token, uint256 _amount, address _user) external {
