@@ -4,7 +4,7 @@ const TokenWithdraw = ({icon, symbol, supply}) => (
     onClick={() => alert("Not implemented yet")}
   >
     <div className="flex items-center gap-[10px]">
-      <img className="w-[30px]" src={icon} alt={`${symbol} logo`} />
+      <img className="w-[30px] rounded-full" src={icon} alt={`${symbol} logo`} />
       <p className="font-bold">{symbol}</p>
     </div>
     <p className="group-hover:hidden">{supply}</p>
