@@ -25,19 +25,21 @@ contract AaveAdapter is IAaveAdapter {
     /// @notice AaveProtocolDataProvider address
     IDataProvider public immutable dataProvider;
 
+    /// @notice chainlink aggregator address
     IAggregator public immutable aggregator;
 
-    address public immutable parentForwarder;
+    /// @notice oven address (parent forwarder)
+    address public immutable oven;
 
     constructor(
-        address _parentForwarder,
+        address _oven,
         IPoolAddressProvider _poolAddressesProvider,
         IWETHGateway _wethGateway,
         IDataProvider _dataProvider,
         IWETH _weth,
         IAggregator _aggregator
     ) {
-        parentForwarder = _parentForwarder;
+        oven = _oven;
         lendingPool = ILendingPoolV3(_poolAddressesProvider.getPool());
         wethGateway = _wethGateway;
         dataProvider = _dataProvider;
@@ -46,6 +48,7 @@ contract AaveAdapter is IAaveAdapter {
     }
 
     function supplyAndBorrow(IERC20Metadata _depositToken, IERC20Metadata _borrowToken, uint256 _amount, address _user) external payable {
+        if (msg.sender != oven) revert();
         if (address(_depositToken) == address(0) || address(_depositToken) == address(weth)) {
             if (address(_depositToken) == address(weth)) {
                 // unwraps WrappedToken back into Native Token
@@ -74,6 +77,7 @@ contract AaveAdapter is IAaveAdapter {
     }
 
     function redeem(IERC20Metadata _token, uint256 _amount, address _user) external {
+        if (msg.sender != oven) revert();
         // Withdraws funds (principal + interest + rewards) from external pool
         if (address(_token) == address(0) || address(_token) == address(weth)) {
             address aTokenAddress;
