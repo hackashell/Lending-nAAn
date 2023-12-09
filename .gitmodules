@@ -4,3 +4,6 @@
 [submodule "backend/lib/prb-test"]
 	path = backend/lib/prb-test
 	url = https://github.com/PaulRBerg/prb-test
+[submodule "backend/lib/openzeppelin-contracts"]
+	path = backend/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
