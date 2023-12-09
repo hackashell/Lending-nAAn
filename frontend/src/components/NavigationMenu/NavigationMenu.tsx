@@ -102,8 +102,8 @@ const NavigationMenu = () => {
         enableLogging: true,
         buildEnv: "production",
         chainConfig: {
-          chainId: "421613",
-          rpcTarget: "https://goerli-rollup.arbitrum.io/rpc",
+          chainId: "0xaa36a7",
+          rpcTarget: `https://rpc.sepolia.org	`,
         },
         showWidgetButton: true,
       };
@@ -194,7 +194,11 @@ const NavigationMenu = () => {
       <div className="text-sm flex items-center gap-[3px]">
         <span className="mr-2">⛽</span>
         <div className="w-[40px]">
-          {gasData ? <p>{gasData}</p> : <Spinner className="w-[15px] h-[15px] mx-auto" />}
+          {gasData ? (
+            <p>{gasData}</p>
+          ) : (
+            <Spinner className="w-[15px] h-[15px] mx-auto" />
+          )}
         </div>
         Gwei
       </div>
