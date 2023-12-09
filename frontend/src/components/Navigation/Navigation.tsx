@@ -1,5 +1,8 @@
 import Logo from "@/components/Logo/Logo";
-import NavigationMenu from "@/components/NavigationMenu/NavigationMenu";
+import dynamic from "next/dynamic";
+const NavigationMenu = dynamic(() => import("@/components/NavigationMenu/NavigationMenu"), {
+    ssr: false,
+})
 
 const Navigation = () => (
     <header>
