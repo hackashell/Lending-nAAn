@@ -94,7 +94,7 @@ const NavigationMenu = () => {
           <DialogTrigger>
             <AnimatedButton text="Connect Wallet" onClick={() => {}} />
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="bg-[#181818] border-0">
             <DialogHeader className="p-2">
               <DialogTitle className="text-lg my-1">
                 Choose Wallet of your choice.
