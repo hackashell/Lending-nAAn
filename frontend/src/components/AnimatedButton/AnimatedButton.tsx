@@ -4,7 +4,7 @@ interface Props {
   className?: string;
 }
 
-export const ConnectButton: React.FC<Props> = ({
+export const AnimatedButton: React.FC<Props> = ({
   text,
   onClick,
   className,

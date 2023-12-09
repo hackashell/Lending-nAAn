@@ -1,4 +1,4 @@
-import { ConnectButton } from "@/components/ConnectButton/ConnectButton";
+import { AnimatedButton } from "@/components/AnimatedButton/AnimatedButton";
 import MyAccount from "@/components/MyAccount/MyAccount";
 import { useSDK } from "@metamask/sdk-react";
 import { useState } from "react";
@@ -24,14 +24,14 @@ const NavigationMenu = () => {
       </p>
       {connected && account ? (
         <div className="flex items-center gap-6">
-          <ConnectButton className="h-16" text={"Swap 🔁"} onClick={() => {}} />
+          <AnimatedButton className="h-16" text={"Swap 🔁"} onClick={() => {}} />
           <MyAccount
             className="h-16"
             address={account}
           />
         </div>
       ) : (
-        <ConnectButton text="Connect" onClick={connect} />
+        <AnimatedButton text="Connect" onClick={connect} />
       )}
     </div>
   );

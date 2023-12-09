@@ -27,7 +27,7 @@ const YourSupplies = () => {
             <TokenRepay
               key={i}
               icon={token.icon}
-              supply={token.supply}
+              debt={token.supply}
               symbol={token.symbol}
             />
           ))
