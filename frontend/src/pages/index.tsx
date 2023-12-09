@@ -26,7 +26,7 @@ export default function Home() {
           loggedIn &&
           <UserBorrowsAndSupplies />
         }
-        <Stripe />
+        {/* <Stripe /> */}
       </main>
     </>
   )
