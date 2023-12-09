@@ -1,4 +1,5 @@
 import { MetaMaskProvider } from "@metamask/sdk-react";
+import { ThemeProvider } from "../themeprovider";
 
 export const Layout: React.FC<{
   children: React.ReactNode;
@@ -18,7 +19,15 @@ export const Layout: React.FC<{
           forceInjectProvider: false,
         }}
       >
+                  <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+
         {children}
+          </ThemeProvider>
       </MetaMaskProvider>
     </div>
   );
