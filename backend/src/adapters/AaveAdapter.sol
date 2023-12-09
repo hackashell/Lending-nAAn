@@ -6,10 +6,10 @@ import "../interfaces/IPoolAddressProvider.sol";
 import "../interfaces/ILendingPoolV3.sol";
 import "../interfaces/IAToken.sol";
 import "../interfaces/IDataProvider.sol";
-import "../interfaces/IAdapter.sol";
+import "../interfaces/IAaveAdapter.sol";
 import "../interfaces/IWETH.sol";
 
-contract LendingAdapter is IAdapter {
+contract AaveAdapter is IAaveAdapter {
     /// @notice Address of the weth gateway contract
     IWETHGateway public immutable wethGateway;
 
