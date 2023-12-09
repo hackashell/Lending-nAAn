@@ -20,7 +20,7 @@ const NavigationMenu = () => {
                             />
                             <MyAccount
                                 className="h-16"
-                                address={"someadress"}
+                                address={"0xE0fF737685fdE7Fd0933Fc280D53978b3d0700D5"}
                             />
                         </div>
                     ) :
