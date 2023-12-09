@@ -19,15 +19,14 @@ export const Layout: React.FC<{
           forceInjectProvider: false,
         }}
       >
-                  <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-
-        {children}
-          </ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </MetaMaskProvider>
     </div>
   );

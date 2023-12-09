@@ -1,36 +1,47 @@
-"use client"
+"use client";
 
 import { AnimatedButton } from "@/components/AnimatedButton/AnimatedButton";
-import { BrowserProvider, Eip1193Provider, ethers } from 'ethers'
+import { BrowserProvider, Eip1193Provider, ethers } from "ethers";
 import MyAccount from "@/components/MyAccount/MyAccount";
 import { useSDK } from "@metamask/sdk-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Spinner } from "../Spinner";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
 // import { safeAuthInitOptions, safeAuthPack } from "../../../safeConfig";
-import { AuthKitSignInData, SafeAuthInitOptions, SafeAuthPack, SafeAuthUserInfo } from "@safe-global/auth-kit";
+import {
+  AuthKitSignInData,
+  SafeAuthInitOptions,
+  SafeAuthPack,
+  SafeAuthUserInfo,
+} from "@safe-global/auth-kit";
+import { Button } from "../ui/button";
 
 const NavigationMenu = () => {
   const [account, setAccount] = useState<string>();
   const { sdk, connected, connecting, provider, chainId } = useSDK();
   const [gasData, setGasData] = useState<string>();
-  const [safeAuthPack, setSafeAuthPack] = useState<SafeAuthPack>()
-  const [safeAuthSignInResponse, setSafeAuthSignInResponse] = useState<AuthKitSignInData>(
-  )
-  const [isAuthenticated, setIsAuthenticated] = useState(!!safeAuthPack?.isAuthenticated)
-  const [safeProvider, setSafeProvider] = useState<BrowserProvider>()
+  const [safeAuthPack, setSafeAuthPack] = useState<SafeAuthPack>();
+  const [safeAuthSignInResponse, setSafeAuthSignInResponse] =
+    useState<AuthKitSignInData>();
+  const [modal, setModal] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!safeAuthPack?.isAuthenticated
+  );
+  const [safeProvider, setSafeProvider] = useState<BrowserProvider>();
 
-  const [userInfo, setUserInfo] = useState<SafeAuthUserInfo | null>(null)
-  const [safeChainId, setSafeChainId] = useState<string>()
-  const [balance, setBalance] = useState<string>()
+  const [userInfo, setUserInfo] = useState<SafeAuthUserInfo | null>(null);
+  const [safeChainId, setSafeChainId] = useState<string>();
+  const [balance, setBalance] = useState<string>();
 
   const Auth = Buffer.from(
     process.env.NEXT_PUBLIC_INFURA_API_KEY +
@@ -73,102 +84,112 @@ const NavigationMenu = () => {
         enableLogging: true,
         showWidgetButton: false,
         chainConfig: {
-          chainId: '0xaa36a7',
-          rpcTarget: `https://rpc.sepolia.org	`
+          chainId: "0xaa36a7",
+          rpcTarget: `https://rpc.sepolia.org	`,
         },
-      }
-       const safeAuthPack = new SafeAuthPack()
+      };
+      const safeAuthPack = new SafeAuthPack();
       await safeAuthPack.init(safeAuthInitOptions);
-      setSafeAuthPack(safeAuthPack)
+      setSafeAuthPack(safeAuthPack);
     })();
   }, []);
 
   useEffect(() => {
     // @ts-expect-error - Missing globals
-    const params = new URL(window.document.location).searchParams
-    const chainId = params.get('chainId')
+    const params = new URL(window.document.location).searchParams;
+    const chainId = params.get("chainId");
 
-    ;(async () => {
+    (async () => {
       const options: SafeAuthInitOptions = {
         enableLogging: true,
-        buildEnv: 'production',
+        buildEnv: "production",
         chainConfig: {
-          chainId: chainId || '0x64',
-          rpcTarget: 'https://gnosis.drpc.org'
-        }
-      }
+          chainId: chainId || "0x64",
+          rpcTarget: "https://gnosis.drpc.org",
+        },
+        showWidgetButton: true,
+      };
 
-      const authPack = new SafeAuthPack()
+      const authPack = new SafeAuthPack();
 
-      await authPack.init(options)
+      await authPack.init(options);
 
-      console.log('safeAuthPack:safeEmbed', authPack.safeAuthEmbed)
+      console.log("safeAuthPack:safeEmbed", authPack.safeAuthEmbed);
 
-      setSafeAuthPack(authPack)
+      setSafeAuthPack(authPack);
 
-      authPack.subscribe('accountsChanged', async (accounts) => {
-        console.log('safeAuthPack:accountsChanged', accounts, authPack.isAuthenticated)
+      authPack.subscribe("accountsChanged", async (accounts) => {
+        console.log(
+          "safeAuthPack:accountsChanged",
+          accounts,
+          authPack.isAuthenticated
+        );
         if (authPack.isAuthenticated) {
-          const signInInfo = await authPack?.signIn()
+          const signInInfo = await authPack?.signIn();
 
-          setSafeAuthSignInResponse(signInInfo)
-          setIsAuthenticated(true)
+          setSafeAuthSignInResponse(signInInfo);
+          setIsAuthenticated(true);
         }
-      })
+      });
 
-      authPack.subscribe('chainChanged', (eventData) =>
-        console.log('safeAuthPack:chainChanged', eventData)
-      )
-    })()
-  }, [])
+      authPack.subscribe("chainChanged", (eventData) =>
+        console.log("safeAuthPack:chainChanged", eventData)
+      );
+    })();
+  }, []);
 
   useEffect(() => {
-    if (!safeAuthPack || !isAuthenticated) return
-    ;(async () => {
-      const web3Provider = safeAuthPack.getProvider()
-      const userInfo = await safeAuthPack.getUserInfo()
+    if (!safeAuthPack || !isAuthenticated) return;
+    (async () => {
+      const web3Provider = safeAuthPack.getProvider();
+      const userInfo = await safeAuthPack.getUserInfo();
 
-      setUserInfo(userInfo)
+      setUserInfo(userInfo);
 
       if (web3Provider) {
-        const provider = new BrowserProvider(safeAuthPack.getProvider() as Eip1193Provider)
-        const signer = await provider.getSigner()
-        const signerAddress = await signer.getAddress()
+        const provider = new BrowserProvider(
+          safeAuthPack.getProvider() as Eip1193Provider
+        );
+        const signer = await provider.getSigner();
+        const signerAddress = await signer.getAddress();
 
-        setSafeChainId((await provider?.getNetwork()).chainId.toString())
+        setSafeChainId((await provider?.getNetwork()).chainId.toString());
         setBalance(
-          ethers.formatEther((await provider.getBalance(signerAddress)) as ethers.BigNumberish)
-        )
-        setSafeProvider(provider)
+          ethers.formatEther(
+            (await provider.getBalance(signerAddress)) as ethers.BigNumberish
+          )
+        );
+        setSafeProvider(provider);
       }
-    })()
-  }, [isAuthenticated])
+    })();
+  }, [isAuthenticated]);
 
   const loginWIthSafe = async () => {
-    const signInInfo = await safeAuthPack?.signIn()
+    setModal(false);
+    const signInInfo = await safeAuthPack?.signIn();
 
-    setSafeAuthSignInResponse(signInInfo)
-    setIsAuthenticated(true)
-    console.log('Sign In Info', signInInfo)
-  }
+    setSafeAuthSignInResponse(signInInfo);
+    setIsAuthenticated(true);
+    console.log("Sign In Info", signInInfo);
+  };
 
   const logout = async () => {
-    await safeAuthPack?.signOut()
+    await safeAuthPack?.signOut();
 
-    setSafeAuthSignInResponse(undefined)
-  }
+    setSafeAuthSignInResponse(undefined);
+  };
 
   const getUserInfo = async () => {
-    const userInfo = await safeAuthPack?.getUserInfo()
+    const userInfo = await safeAuthPack?.getUserInfo();
 
-    console.log('User Info', userInfo)
-  }
+    console.log("User Info", userInfo);
+  };
 
   const getAccounts = async () => {
-    const accounts = await provider?.send('eth_accounts', [])
+    const accounts = await provider?.send("eth_accounts", []);
 
-    console.log('Accounts', accounts)
-  }
+    console.log("Accounts", accounts);
+  };
 
   return (
     <div className="flex items-center gap-12">
@@ -190,9 +211,14 @@ const NavigationMenu = () => {
           <MyAccount className="h-16" address={account} />
         </div>
       ) : (
-        <Dialog>
+        <Dialog open={modal}>
           <DialogTrigger>
-            <AnimatedButton text="Connect Wallet" onClick={() => {}} />
+            <AnimatedButton
+              text="Connect Wallet"
+              onClick={() => {
+                setModal(true);
+              }}
+            />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader className="p-2">
@@ -214,6 +240,13 @@ const NavigationMenu = () => {
                 </div>
               </DialogDescription>
             </DialogHeader>
+            <DialogFooter className="sm:justify-start">
+              <DialogClose asChild>
+                <Button onClick={() => {setModal(false)}} type="button" variant="secondary">
+                  Close
+                </Button>
+              </DialogClose>
+            </DialogFooter>
           </DialogContent>
         </Dialog>
       )}
