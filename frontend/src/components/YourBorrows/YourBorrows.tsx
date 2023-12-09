@@ -1,15 +1,16 @@
 import TokenWithdraw from "@/components/TokenWithdraw/TokenWithdraw";
+import {DAI_LOGO, USDC_LOGO} from "@/lib/constants";
 
 const YourBorrows = () => {
   const mockTokens = [
     {
-      icon: "https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+      icon: USDC_LOGO,
       symbol: "USDC",
       supply: 1500,
     },
     {
-      icon: "https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/0x111111111117dC0aa78b770fA6A738034120C302/logo.png",
-      symbol: "1INCH",
+      icon: DAI_LOGO,
+      symbol: "DAI",
       supply: 600,
     }
   ]
