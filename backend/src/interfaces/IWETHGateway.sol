@@ -1,4 +1,5 @@
-pragma solidity 0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.22;
 
 interface IWETHGateway {
     function depositETH(address lendingPool, address onBehalfOf, uint16 referralCode) external payable;
