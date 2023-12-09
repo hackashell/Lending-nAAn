@@ -3,6 +3,7 @@ pragma solidity ^0.8.22;
 
 import { Multicall } from "lib/openzeppelin-contracts/contracts/utils/Multicall.sol";
 import { IAaveAdapter } from "./interfaces/IAaveAdapter.sol";
+import { IOneInchAdapter } from "./interfaces/IOneInchAdapter.sol";
 import { IERC20 } from "lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
 contract Oven is Multicall {
@@ -47,5 +48,9 @@ contract Oven is Multicall {
         IAaveAdapter(adapters[Flavor.Aave]).repay(IERC20(token), amount, msg.sender);
     }
 
-    function oneInchSwap(address tokenIn, address tokenOut, uint256 amountIn, uint256 minAmountOut) external { }
+    function oneInchSwap(address tokenIn, address tokenOut, uint256 amountIn, uint256 minAmountOut) external {
+        IOneInchAdapter(adapters[Flavor.OneInch]).swapForExactInput(
+            IERC20(tokenIn), tokenOut, amountIn, minAmountOut, msg.sender
+        );
+    }
 }
