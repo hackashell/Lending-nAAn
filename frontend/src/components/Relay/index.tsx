@@ -34,8 +34,6 @@ export const Relay = () => {
     isSponsored: true,
   };
 
-  useEffect(() => {}, []);
-
   const executeTxn = async () => {
     const ethAdapter = new EthersAdapter({
       ethers,
