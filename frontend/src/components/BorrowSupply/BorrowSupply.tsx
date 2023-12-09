@@ -31,17 +31,17 @@ export const BorrowSupply = () => {
           <SelectTrigger className="w-auto border-0 focus:ring-offset-0 bg-inputBg rounded-md h-16">
             <SelectValue placeholder="Select token" />
           </SelectTrigger>
-          <SelectContent className="bg-inputBg text-lg text-white">
+          <SelectContent className="bg-inputBg text-lg border-0 focus:border-0 active:border-0 text-white">
             <SelectItem value="usdc">USDC</SelectItem>
             <SelectItem value="dai">DAI</SelectItem>
             <SelectItem value="eth">ETH</SelectItem>
           </SelectContent>
         </Select>
         <Select>
-          <SelectTrigger className="w-auto border-0 focus:ring-offset-0 bg-inputBg rounded-md h-16">
+          <SelectTrigger className="w-auto border-0 active:border-0 focus:border-0 focus:ring-offset-0 bg-inputBg rounded-md h-16">
             <SelectValue placeholder="Select token" />
           </SelectTrigger>
-          <SelectContent className="bg-inputBg text-lg focus:ring-offset-0 text-white">
+          <SelectContent className="bg-inputBg text-lg focus:ring-offset-0 border-0 active:border-0 focus:border-0 text-white">
             <SelectItem value="aave">AAVE</SelectItem>
             <SelectItem value="dai">DAI</SelectItem>
           </SelectContent>
