@@ -210,7 +210,7 @@ const NavigationMenu = () => {
           <MyAccount className="h-16" address={account} />
         </div>
       ) : (
-        <Dialog open={modal}>
+        <Dialog open={modal} onOpenChange={setModal}>
           <DialogTrigger>
             <AnimatedButton
               text="Connect Wallet"
@@ -239,13 +239,6 @@ const NavigationMenu = () => {
                 </div>
               </DialogDescription>
             </DialogHeader>
-            <DialogFooter className="sm:justify-start">
-              <DialogClose asChild>
-                <Button onClick={() => {setModal(false)}} type="button" variant="secondary">
-                  Close
-                </Button>
-              </DialogClose>
-            </DialogFooter>
           </DialogContent>
         </Dialog>
       )}
