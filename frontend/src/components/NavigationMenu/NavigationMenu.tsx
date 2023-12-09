@@ -14,10 +14,12 @@ const NavigationMenu = () => {
                     (
                         <div className="flex items-center gap-6">
                             <ButtonAnimated
+                                className="h-16"
                                 text={"Swap 🔁"}
                                 primary
                             />
                             <MyAccount
+                                className="h-16"
                                 address={"someadress"}
                             />
                         </div>
