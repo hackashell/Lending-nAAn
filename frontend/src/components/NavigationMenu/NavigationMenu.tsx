@@ -73,14 +73,13 @@ const NavigationMenu = () => {
 
   return (
     <div className="flex items-center gap-12">
-      {!gasData ? (
-        <Spinner />
-      ) : (
-        <p className="text-sm">
-          <span className="mr-4">⛽</span>
-          {gasData} Gwei
-        </p>
-      )}
+      <div className="text-sm flex items-center gap-[3px]">
+        <span className="mr-2">⛽</span>
+        <div className="w-[40px]">
+          {gasData ? <p>{gasData}</p> : <Spinner className="w-[15px] h-[15px] mx-auto" />}
+        </div>
+        Gwei
+      </div>
       {connected && account ? (
         <div className="flex items-center gap-6">
           <AnimatedButton
