@@ -4,7 +4,7 @@ import NavigationMenu from "@/components/NavigationMenu/NavigationMenu";
 
 const Navigation = () => (
     <header>
-        <div className="max-w-7xl mx-auto p-8">
+        <div className="">
             <div className="flex items-center justify-between">
                 <Logo />
                 <NavigationMenu />
