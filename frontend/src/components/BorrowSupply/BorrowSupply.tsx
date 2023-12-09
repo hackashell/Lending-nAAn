@@ -15,6 +15,7 @@ import OvenABI from "../../../../backend/out/Oven.sol/Oven.json";
 import { Address, concat, encodeFunctionData, http, parseEther } from "viem";
 import { arbitrumGoerli } from "viem/chains";
 import { Alert } from "../Alert";
+import { useEffect, useState } from "react";
 
 const TokenOptions = () => (
   <>
@@ -96,9 +97,11 @@ export const BorrowSupply = () => {
     console.log(txHash);
     <Alert message="Txn sent!" />;
   };
+  const [txnSent, setTxnSent] = useState(false);
 
   return (
     <div className="bg-compBg my-10 mx-auto flex flex-col gap-3 w-4/5 p-8">
+      {txnSent && <Alert message="Txn sent!" />}
       <div className="grid grid-cols-2 gap-4">
         <div className="text-white font-semibold text-lg">Deposit</div>
         <div className="text-white font-semibold text-lg">Borrow</div>
@@ -129,20 +132,17 @@ export const BorrowSupply = () => {
           </SelectContent>
         </Select>
       </div>
-      {account && connected ? (
+
         <AnimatedButton
           className="w-full text-lg"
           text="Execute"
-          onClick={() => {}}
+          onClick={() => {
+            // executeTxn();
+            console.log("Execute");
+            setTxnSent(true)
+          }}
         />
-      ) : (
-        <AnimatedButton
-          className="w-full text-lg"
-          // TODO: open modal instead of MetaMask
-          text="Connect"
-          onClick={() => sdk?.connect()}
-        />
-      )}
+  
     </div>
   );
 };
