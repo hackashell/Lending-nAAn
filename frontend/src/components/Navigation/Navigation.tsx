@@ -1,5 +1,4 @@
 import Logo from "@/components/Logo/Logo";
-import ButtonAnimated from "@/components/ButtonAnimated/ButtonAnimated";
 import NavigationMenu from "@/components/NavigationMenu/NavigationMenu";
 
 const Navigation = () => (

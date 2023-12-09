@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@metamask/sdk": "^0.14.1",
+    "@metamask/sdk-react": "^0.14.1",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "boring-avatars": "^1.10.1",
