@@ -1,4 +1,7 @@
-export const Spinner = ({className}) => {
+interface Props {
+  className?: string;
+}
+export const Spinner: React.FC<Props> = ({className}) => {
   return (
     <div className={className} role="status">
       <svg
