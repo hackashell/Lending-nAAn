@@ -1,3 +1,5 @@
+"use client"
+
 import { AnimatedButton } from "@/components/AnimatedButton/AnimatedButton";
 import { BrowserProvider, Eip1193Provider, ethers } from 'ethers'
 import MyAccount from "@/components/MyAccount/MyAccount";
@@ -65,21 +67,21 @@ const NavigationMenu = () => {
     }
   };
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const safeAuthInitOptions: SafeAuthInitOptions = {
-  //       enableLogging: true,
-  //       showWidgetButton: false,
-  //       chainConfig: {
-  //         chainId: '0xaa36a7',
-  //         rpcTarget: `https://rpc.sepolia.org	`
-  //       },
-  //     }
-  //      const safeAuthPack = new SafeAuthPack()
-  //     await safeAuthPack.init(safeAuthInitOptions);
-  //     setSafeAuthKit(safeAuthPack)
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const safeAuthInitOptions: SafeAuthInitOptions = {
+        enableLogging: true,
+        showWidgetButton: false,
+        chainConfig: {
+          chainId: '0xaa36a7',
+          rpcTarget: `https://rpc.sepolia.org	`
+        },
+      }
+       const safeAuthPack = new SafeAuthPack()
+      await safeAuthPack.init(safeAuthInitOptions);
+      setSafeAuthPack(safeAuthPack)
+    })();
+  }, []);
 
   useEffect(() => {
     // @ts-expect-error - Missing globals
