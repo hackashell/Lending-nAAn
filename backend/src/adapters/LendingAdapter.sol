@@ -9,7 +9,7 @@ import "../interfaces/IAdapter.sol";
 import "../interfaces/IWETH.sol";
 
 contract LendingAdapter is IAdapter {
-    /// @notice Address of the Aave V2 weth gateway contract
+    /// @notice Address of the weth gateway contract
     IWETHGateway public immutable wethGateway;
 
     /// @notice Lending pool address
@@ -48,6 +48,24 @@ contract LendingAdapter is IAdapter {
         } else {
             _token.approve(address(lendingPool), _amount);
             lendingPool.supply(address(_token), _amount, _user, 0);
+        }
+    }
+
+    function redeem(IERC20 _token, uint256 _amount, address _user) external {
+        // Withdraws funds (principal + interest + rewards) from external pool
+        if (address(_token) == address(0) || address(_token) == address(weth)) {
+            address aTokenAddress;
+            if (address(_token) == address(0)) {
+                (aTokenAddress,,) = dataProvider.getReserveTokensAddresses(address(weth));
+            } else {
+                (aTokenAddress,,) = dataProvider.getReserveTokensAddresses(address(_token));
+            }
+
+            IAToken(aTokenAddress).approve(address(wethGateway), _amount);
+
+            wethGateway.withdrawETH(address(lendingPool), _amount, _user);
+        } else {
+            lendingPool.withdraw(address(_token), _amount, _user);
         }
     }
 }
