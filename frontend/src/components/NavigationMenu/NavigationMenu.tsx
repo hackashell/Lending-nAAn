@@ -82,8 +82,8 @@ const NavigationMenu = () => {
         enableLogging: true,
         showWidgetButton: false,
         chainConfig: {
-          chainId: "0xaa36a7",
-          rpcTarget: `https://rpc.sepolia.org	`,
+          chainId: "421613",
+          rpcTarget: `https://goerli-rollup.arbitrum.io/rpc`,
         },
       };
       const safeAuthPack = new SafeAuthPack();
@@ -102,8 +102,8 @@ const NavigationMenu = () => {
         enableLogging: true,
         buildEnv: "production",
         chainConfig: {
-          chainId: chainId || "0x64",
-          rpcTarget: "https://gnosis.drpc.org",
+          chainId: "421613",
+          rpcTarget: "https://goerli-rollup.arbitrum.io/rpc",
         },
         showWidgetButton: true,
       };
