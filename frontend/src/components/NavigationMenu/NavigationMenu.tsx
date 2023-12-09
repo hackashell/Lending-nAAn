@@ -4,11 +4,21 @@ import { useSDK } from "@metamask/sdk-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Spinner } from "../Spinner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 
 const NavigationMenu = () => {
   const [account, setAccount] = useState<string>();
   const { sdk, connected, connecting, provider, chainId } = useSDK();
   const [gasData, setGasData] = useState<string>();
+  const [safeChainId, setSafeChainId] = useState<string>();
+  const [balance, setBalance] = useState<string>();
 
   const Auth = Buffer.from(
     process.env.NEXT_PUBLIC_INFURA_API_KEY +
@@ -44,6 +54,23 @@ const NavigationMenu = () => {
       console.warn(`failed to connect..`, err);
     }
   };
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const safeAuthInitOptions: SafeAuthInitOptions = {
+  //       enableLogging: true,
+  //       showWidgetButton: false,
+  //       chainConfig: {
+  //         chainId: '0xaa36a7',
+  //         rpcTarget: `https://rpc.sepolia.org	`
+  //       },
+  //     }
+  //      const safeAuthPack = new SafeAuthPack()
+  //     await safeAuthPack.init(safeAuthInitOptions);
+  //     setSafeAuthKit(safeAuthPack)
+  //   })();
+  // }, []);
+
   return (
     <div className="flex items-center gap-12">
       {!gasData ? (
@@ -64,7 +91,32 @@ const NavigationMenu = () => {
           <MyAccount className="h-16" address={account} />
         </div>
       ) : (
-        <AnimatedButton text="Connect" onClick={connect} />
+        <Dialog>
+          <DialogTrigger>
+            <AnimatedButton text="Connect Wallet" onClick={() => {}} />
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader className="p-2">
+              <DialogTitle className="text-lg my-1">
+                Choose Wallet of your choice.
+              </DialogTitle>
+              <DialogDescription className="py-2">
+                <div className="flex flex-col gap-4">
+                  <AnimatedButton
+                    text="Connect with Metamask"
+                    onClick={connect}
+                    className="w-2/3 m-auto h-12 text-base"
+                  />
+                  <AnimatedButton
+                    text="Login with Safe"
+                    onClick={() => {}}
+                    className="w-2/3 m-auto h-12 text-base"
+                  />
+                </div>
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       )}
     </div>
   );
