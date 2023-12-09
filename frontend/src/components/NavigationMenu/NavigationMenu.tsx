@@ -149,6 +149,7 @@ const NavigationMenu = () => {
 
     setSafeAuthSignInResponse(signInInfo)
     setIsAuthenticated(true)
+    console.log('Sign In Info', signInInfo)
   }
 
   const logout = async () => {
@@ -168,15 +169,6 @@ const NavigationMenu = () => {
 
     console.log('Accounts', accounts)
   }
-
-  // const signInWithSafe = async () => {
-  //   const authKitSignData = await safeAuthKit?.signIn();
-
-  //   setAccount(authKitSignData?.safes?.[0]);
-  //   safeAuthKit?.subscribe("accountsChanged", (accounts: string[]) => {
-  //     setAccount(accounts?.[0]);
-  //   });
-  // };
 
   return (
     <div className="flex items-center gap-12">
