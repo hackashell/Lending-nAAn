@@ -79,6 +79,7 @@ export const BorrowSupply = () => {
           /> :
           <AnimatedButton
             className="w-full text-lg"
+            // TODO: open modal instead of MetaMask
             text="Connect" onClick={() => sdk?.connect()}
           />
       }
