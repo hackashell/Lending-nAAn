@@ -1,0 +1,197 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getPool",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "getPool()": "026b1d5f"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getPool\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interfaces/IPoolAddressProvider.sol\":\"IPoolAddressesProvider\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"none\"},\"optimizer\":{\"enabled\":true,\"runs\":10000},\"remappings\":[\":@prb/test/=lib/prb-test/src/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\",\":prb-test/=lib/prb-test/src/\"]},\"sources\":{\"src/interfaces/IPoolAddressProvider.sol\":{\"keccak256\":\"0x3b890ce0bdfb1a2f42ab87471a05b3a2375acf65b04b4c0723277ffb133a6ff4\",\"urls\":[\"bzz-raw://007ba989a687ffcbf549a09a5b65e795c1947801f9a69f62ff858e8db7b32734\",\"dweb:/ipfs/QmUDpV5hnbbjXde72ZKfDxWR9j62fvDZtme9rhmHm8dGRC\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getPool",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@prb/test/=lib/prb-test/src/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "forge-std/=lib/forge-std/src/",
+        "prb-test/=lib/prb-test/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 10000
+      },
+      "metadata": {
+        "bytecodeHash": "none"
+      },
+      "compilationTarget": {
+        "src/interfaces/IPoolAddressProvider.sol": "IPoolAddressesProvider"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/interfaces/IPoolAddressProvider.sol": {
+        "keccak256": "0x3b890ce0bdfb1a2f42ab87471a05b3a2375acf65b04b4c0723277ffb133a6ff4",
+        "urls": [
+          "bzz-raw://007ba989a687ffcbf549a09a5b65e795c1947801f9a69f62ff858e8db7b32734",
+          "dweb:/ipfs/QmUDpV5hnbbjXde72ZKfDxWR9j62fvDZtme9rhmHm8dGRC"
+        ],
+        "license": null
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/interfaces/IPoolAddressProvider.sol",
+    "id": 53,
+    "exportedSymbols": {
+      "IPoolAddressesProvider": [
+        52
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "0:117:3",
+    "nodes": [
+      {
+        "id": 46,
+        "nodeType": "PragmaDirective",
+        "src": "0:23:3",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".20"
+        ]
+      },
+      {
+        "id": 52,
+        "nodeType": "ContractDefinition",
+        "src": "25:92:3",
+        "nodes": [
+          {
+            "id": 51,
+            "nodeType": "FunctionDefinition",
+            "src": "64:51:3",
+            "nodes": [],
+            "functionSelector": "026b1d5f",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPool",
+            "nameLocation": "73:7:3",
+            "parameters": {
+              "id": 47,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "80:2:3"
+            },
+            "returnParameters": {
+              "id": 50,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 49,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 51,
+                  "src": "106:7:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 48,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "106:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "105:9:3"
+            },
+            "scope": 52,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IPoolAddressesProvider",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          52
+        ],
+        "name": "IPoolAddressesProvider",
+        "nameLocation": "35:22:3",
+        "scope": 53,
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ]
+  },
+  "id": 3
+}

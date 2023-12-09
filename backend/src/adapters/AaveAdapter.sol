@@ -40,7 +40,7 @@ contract AaveAdapter is IAaveAdapter {
         IAggregator _aggregator
     ) {
         oven = _oven;
-        lendingPool = ILendingPoolV3(_poolAddressesProvider.getPool());
+        lendingPool = ILendingPoolV3(address(0));
         wethGateway = _wethGateway;
         dataProvider = _dataProvider;
         weth = _weth;

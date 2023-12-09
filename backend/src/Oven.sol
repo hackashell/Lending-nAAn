@@ -5,8 +5,9 @@ import { Multicall } from "lib/openzeppelin-contracts/contracts/utils/Multicall.
 import { IAaveAdapter } from "./interfaces/IAaveAdapter.sol";
 import { IOneInchAdapter } from "./interfaces/IOneInchAdapter.sol";
 import "lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import { Ownable } from "lib/openzeppelin-contracts/contracts/access/Ownable.sol";
 
-contract Oven is Multicall {
+contract Oven is Multicall, Ownable {
     enum Flavor {
         Aave,
         OneInch
@@ -17,9 +18,10 @@ contract Oven is Multicall {
     event AaveWithdraw(address indexed token, uint256 indexed amount, address indexed from);
     event AaveSupplyAndBorrow(address indexed supplyToken, address indexed borrowToken, uint256 supplyAmount, uint256 borrowAmount, address indexed from);
 
-    constructor(address aaveAdapter, address oneInchAdapter) {
-        adapters[Flavor.Aave] = aaveAdapter;
-        adapters[Flavor.OneInch] = oneInchAdapter;
+    constructor() Ownable(msg.sender) {}
+
+    function setFavour(Flavor _flavor, address _adapter) onlyOwner external {
+        adapters[_flavor] = _adapter;
     }
 
     function aaveWithdraw(IERC20Metadata token, uint256 amount, address from) external {

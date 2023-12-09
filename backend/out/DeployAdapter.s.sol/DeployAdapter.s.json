@@ -1,0 +1,20 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "src/script/DeployAdapter.s.sol",
+    "id": 41398,
+    "exportedSymbols": {},
+    "nodeType": "SourceUnit",
+    "src": "351:0:25",
+    "nodes": []
+  },
+  "id": 25
+}
