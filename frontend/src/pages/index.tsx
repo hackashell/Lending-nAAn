@@ -4,6 +4,7 @@ import { BorrowSupply } from '@/components/BorrowSupply/BorrowSupply';
 import UserBorrowsAndSupplies from "@/components/UserBorrowsAndSupplies/UserBorrowsAndSupplies";
 import {useSDK} from "@metamask/sdk-react";
 import Head from "next/head";
+import Stripe from '@/components/OnRamp';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,6 +26,7 @@ export default function Home() {
           loggedIn &&
           <UserBorrowsAndSupplies />
         }
+        <Stripe />
       </main>
     </>
   )

@@ -9,6 +9,12 @@ import {
 } from "../ui/select";
 import {DAI_LOGO, ETH_LOGO, USDC_LOGO} from "@/lib/constants";
 import {useSDK} from "@metamask/sdk-react";
+import { bundlerClient, paymasterClient, publicClient } from "@/pimlicoConfig";
+import { createSmartAccountClient , } from "permissionless";
+import OvenABI from "../../../../backend/out/Oven.sol/Oven.json"
+import { Address, concat, encodeFunctionData, http, parseEther } from "viem";
+import {  arbitrumGoerli,  } from "viem/chains";
+import { Alert } from "../Alert";
 
 const TokenOptions = () => (
   <>
@@ -36,6 +42,52 @@ const TokenOptions = () => (
 export const BorrowSupply = () => {
   const { account, connected, sdk } = useSDK();
 
+  // GENERATE THE INITCODE
+const SIMPLE_ACCOUNT_FACTORY_ADDRESS = "0xad2e65a73b714d5c5f5a49a388023cd36e0443db"
+ 
+  const executeTxn = async () => {
+
+const initCode = concat([
+  SIMPLE_ACCOUNT_FACTORY_ADDRESS,
+  encodeFunctionData({
+    abi: [{
+      inputs: [{ name: "owner", type: "address" }, { name: "salt", type: "uint256" }],
+      name: "createAccount",
+      outputs: [{ name: "ret", type: "address" }],
+      stateMutability: "nonpayable",
+      type: "function",
+    }],
+    args: [account as Address, BigInt('0n')],
+  })
+]);
+ 
+console.log("Generated initCode:", initCode)
+
+    const smartAccountClient = createSmartAccountClient({
+      account: account as Address,
+      chain: arbitrumGoerli,
+      transport: http(
+        "https://api.pimlico.io/v1/CHAIN/rpc?apikey=" + process.env.NEXT_PUBLIC_PIMLICO_API_KEY,
+      ),
+
+      sponsorUserOperation: paymasterClient.sponsorUserOperation, // optional
+    });
+    
+    const gasPrices = await bundlerClient.getUserOperationGasPrice();
+
+    const txHash = await smartAccountClient.sendTransaction({
+      to: "0xad2e65a73b714d5c5f5a49a388023cd36e0443db",
+      account: account as Address,
+      value: parseEther("0.1"),
+      maxFeePerGas: gasPrices.fast.maxFeePerGas, // if using Pimlico
+      maxPriorityFeePerGas: gasPrices.fast.maxPriorityFeePerGas, // if using Pimlico
+  
+    });
+
+    console.log(txHash);
+    <Alert message="Txn sent!" />
+  };
+
   return (
     <div className="bg-compBg my-10 mx-auto flex flex-col gap-3 w-4/5 p-8">
       <div className="grid grid-cols-2 gap-4">
@@ -50,7 +102,6 @@ export const BorrowSupply = () => {
         />
         <div
           className="text-[#595959] text-4xl h-16 flex items-center px-2"
-          placeholder="0"
         >
           0
         </div>
