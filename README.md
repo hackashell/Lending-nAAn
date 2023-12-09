@@ -33,25 +33,42 @@ Go multichain and cross chain providing option of depositing on one chain and ge
 ## What tech did we use and what bounties we apply for?
 
 ### Safe
-#### Bounties:
+```
+Bounties:
+
 - SAFE{CORE} AA SDK
 - Safe 4337 Module integrated with Pimlico
-#### Tech used:
-SAFE{CORE} AA SDK:
 
-Onramp kit:
 
-Pimlico:
+Tech used:
+
+SAFE{CORE} AA SDK
+We use this component to sing up and sign in users with their emails automatically crating wallets for them.
+
+Onramp kit
+
+Pimlico
+We use Pimlico with account created wth SAFE{CORE} AA SDK for gasless transactions
+```
 
 ### MetaMask & Linea
-#### Bounties:
+```
+Bounties:
+
 - Best Gas API Application (Fetch Real-Time Gas Prices)
-#### Tech used:
-MetaMask SDK:
 
-Gas API:
 
-Linea:
+Tech used:
+
+MetaMask SDK
+We use MetaMask SDK to enable option of connecting and interacting with the dapp using MetaMask. 
+
+Gas API
+We use Gas API to fetch Real-Time Gas Prices and diplay it in the dapp navigation.
+
+Linea
+We have deployed our contract on Linea testnet at the address 0x262d7a5bee15e9e9fea0c0439da4dac9056e178e
+```
 
 ### Graph
 #### Bounties:
