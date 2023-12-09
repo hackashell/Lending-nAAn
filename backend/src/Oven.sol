@@ -5,7 +5,7 @@ import { Multicall } from "lib/openzeppelin-contracts/contracts/utils/Multicall.
 import { IAaveAdapter } from "./interfaces/IAaveAdapter.sol";
 import { IERC20 } from "lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
-contract Oven is Multicall, Ownable2Step {
+contract Oven is Multicall {
     enum Flavor {
         Aave,
         OneInch
