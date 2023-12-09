@@ -5,5 +5,12 @@ interface ILendingPoolV3 {
 
     function withdraw(address asset, uint256 amount, address to) external;
 
-    function borrow(address asset, uint256 amount, uint256 interestRateMode, uint16 referralCode, address onBehalfOf) external;
+    function borrow(
+        address asset,
+        uint256 amount,
+        uint256 interestRateMode,
+        uint16 referralCode,
+        address onBehalfOf
+    )
+        external;
 }

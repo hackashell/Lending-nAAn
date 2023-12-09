@@ -1,5 +1,5 @@
 pragma solidity 0.8.20;
 
-interface IPoolAddressesProvider {
+interface IPoolAddressProvider {
     function getPool() external view returns (address);
 }

@@ -1,6 +1,6 @@
 pragma solidity 0.8.20;
 
-interface AToken {
+interface IAToken {
     /**
      * @dev Returns the amount of tokens owned by `account`.
      */
