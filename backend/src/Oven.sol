@@ -14,6 +14,9 @@ contract Oven is Multicall {
 
     mapping(Flavor => address) adapters;
 
+    event AaveWithdraw(address indexed token, uint256 indexed amount, address indexed from);
+    event AaveSupplyAndBorrow(address indexed supplyToken, address indexed borrowToken, uint256 supplyAmount, uint256 borrowAmount, address indexed from);
+
     constructor(address aaveAdapter, address oneInchAdapter) {
         adapters[Flavor.Aave] = aaveAdapter;
         adapters[Flavor.OneInch] = oneInchAdapter;
@@ -24,12 +27,15 @@ contract Oven is Multicall {
         address adapter = adapters[Flavor.Aave];
         token.approve(adapter, amount);
         IAaveAdapter(adapter).redeem(token, amount, from);
+
+        emit AaveWithdraw(address(token), amount, from);
     }
 
     function aaveSupplyAndBorrow(
         IERC20Metadata supplyToken,
         IERC20Metadata borrowToken,
         uint256 supplyAmount,
+        uint256 borrowAmount,
         address from
     )
         external
@@ -37,7 +43,9 @@ contract Oven is Multicall {
         supplyToken.transferFrom(from, address(this), supplyAmount);
         address adapter = adapters[Flavor.Aave];
         supplyToken.approve(adapter, supplyAmount);
-        IAaveAdapter(adapter).supplyAndBorrow(supplyToken, borrowToken, supplyAmount, from);
+        IAaveAdapter(adapter).supplyAndBorrow(supplyToken, borrowToken, supplyAmount, borrowAmount, from);
+
+        emit AaveSupplyAndBorrow(address(supplyToken), address(borrowToken), supplyAmount, borrowAmount, from);
     }
 
     function oneInchSwap(address tokenIn, address tokenOut, uint256 amountIn, uint256 minAmountOut) external {
