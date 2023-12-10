@@ -11,7 +11,7 @@ interface Props {
 
 export const Alert: React.FC<Props> = ({ message }) => {
   return (
-    <RadixAlert className="absolute bottom-8 w-8/12 mx-auto">
+    <RadixAlert className="absolute text-center bottom-8 w-8/12 mx-auto">
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>{message}</AlertDescription>
     </RadixAlert>

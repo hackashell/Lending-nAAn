@@ -98,6 +98,7 @@ export const BorrowSupply = () => {
     <Alert message="Txn sent!" />;
   };
   const [txnSent, setTxnSent] = useState(false);
+  const [deposit, setDeposit] = useState<number>();
 
   return (
     <div className="bg-compBg my-10 mx-auto flex flex-col gap-3 w-4/5 p-8">
@@ -108,12 +109,14 @@ export const BorrowSupply = () => {
       </div>
       <div className="grid grid-cols-2 grid-rows-2 gap-4 rounded-md">
         <Input
+          onChange={(e) => setDeposit(+e.target.value)}
+          value={deposit}
           className="bg-inputBg rounded-sm text-white text-4xl h-16 p-2 border-0 focus:border-0 active:border-0 focus:ring-0 focus:outline-0 placeholder:text-[#595959]"
           type="number"
           placeholder="0"
         />
         <div className="text-[#595959] text-4xl h-16 flex items-center px-2">
-          0
+          {deposit && deposit * 3.497}
         </div>
         <Select>
           <SelectTrigger className="w-auto border-0 focus:ring-offset-0 bg-inputBg rounded-md h-16">
@@ -133,16 +136,20 @@ export const BorrowSupply = () => {
         </Select>
       </div>
 
-        <AnimatedButton
-          className="w-full text-lg"
-          text="Execute"
-          onClick={() => {
-            // executeTxn();
-            console.log("Execute");
-            setTxnSent(true)
-          }}
-        />
-  
+      <AnimatedButton
+        className="w-full text-lg"
+        text="Execute"
+        onClick={() => {
+          // executeTxn();
+          console.log("Execute");
+          setTxnSent(true);
+        }}
+      />
+      <div className="text-white mx-auto">
+        {!txnSent
+          ? "Your balance: 7.334"
+          : "Your balance: " + (7.334 + ((deposit ?? 0) * 3.497))}
+      </div>
     </div>
   );
 };
