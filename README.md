@@ -82,7 +82,9 @@ Bounties:
 Tech used:
 
 Subgraphs
-
+arbitrum: https://api.studio.thegraph.com/query/389/lending-naan/version/latest
+mumbai: https://api.studio.thegraph.com/query/389/lending-naan-mumbai/version/latest
+scroll: https://api.studio.thegraph.com/query/389/lending-naan-scroll/version/latest
 ```
 
 ### Airstack
